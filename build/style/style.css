@@ -1,0 +1,9 @@
+/*! my-styile */
+.container#content .todo-item {
+  color: #888; }
+.container#content .todo-title {
+  color: #888; }
+.container#content .done {
+  text-decoration: line-through; }
+
+/*# sourceMappingURL=style.css.map */

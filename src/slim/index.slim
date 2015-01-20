@@ -1,0 +1,75 @@
+html
+  head
+    meta charset='utf-8'
+    title TaskManeger
+    link rel='stylesheet' href='build/style/style.css'
+    link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'
+    /* script src='//code.jquery.com/jquery.js'                                                                */
+    /* script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js'                              */
+    /* script src='http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js' */
+    script src='build/script/angular.js'
+    script src='build/script/app.js'
+
+  body ng-app='App'
+    .navbar.navbar-default#navigation
+      .container
+        button.navbar-toggle type='button' data-toggle='collapse' data-target='.navbar-responsive-collapse'
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+      a.navbar-brand href='#'
+        | TaskManeger
+      .nav-collapse.collapse.navbar-responsive-collapse
+        ul.nav.navbar-nav
+          li
+            a href='#'
+              | home
+    .container#content
+      h1
+        | TaskManeger
+      br
+      form.input-group.input-group-lg
+        input.form-control.imput-lg type="text" placeholder="input by task"
+        span.input-group-btn
+          button.btn.btn-default type="submit"
+            | Add
+      .btn-toolbar
+        .btn-group
+          button.btn.btn-success
+            | OK/NG
+          button.btn.btn-default.active
+            | TODO
+            span.badge 3
+          button.btn.btn-default.active
+            | Complate
+            span.badge 1
+        .btn-group
+          button.btn.btn-danger
+            | Romove by Completed tasks
+      hr
+      ul.list-unstyled
+        li.todo-item
+          form.input-group.input-group-lg.todo-title
+            label.input-group-addon
+              input type="checkbox"
+            p.form-control.input-lg.todo-title
+              | Not Complet Task
+            span.input-group-btn.del-btn
+              button.btn.btn-danger type="reset"
+                | Delete
+        li.todo-item.done
+          form.input-group.input-group-lg.todo-title
+            label.input-group-addon
+              input type="checkbox"
+            p.form-control.input-lg.todo-title
+              | Completed Task
+            span.input-group-btn.del-btn
+              button.btn.btn-danger type="reset"
+                | Delete
+        li.todo-item.editing
+          form.input-group.input-group-lg.todo-title
+            label.input-group-addon
+              input type="checkbox"
+            p.form-control.input-lg.todo-title
+              | Editing Task
+

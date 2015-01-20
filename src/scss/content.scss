@@ -1,0 +1,14 @@
+/*! my-styile */
+$gray: #888;
+.container#content {
+  .todo-item {
+    color: $gray;
+  }
+  .todo-title {
+    color: $gray;
+  }
+  .done {
+    text-decoration: line-through;
+  }
+}
+
