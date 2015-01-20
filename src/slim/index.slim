@@ -54,19 +54,21 @@ html
           )
             | ALL
             span.badge
-              | {{ todos.length }}
+              | {{ allCount }}
           button.btn.btn-default (
             ng-click="changeFilter(filter.remaining)"
             ng-class="{active: currentFilter == filter.remaining}"
           )
             | Complate
-            span.badge 1
+            span.badge
+              | {{ doneCount }}
           button.btn.btn-default (
             ng-click="changeFilter(filter.done)"
             ng-class="{active: currentFilter == filter.done}"
           )
             | Not Complate
-            span.badge 1
+            span.badge
+              | {{ remainingCount }}
         .btn-group
           button.btn.btn-danger
             | romove by completed all tasks
@@ -78,7 +80,7 @@ html
         )
           form.input-group.input-group-lg.todo-title
             label.input-group-addon
-              input type="checkbox"
+              input type="checkbox" ng-model="todo.done"
             p.form-control.input-lg.todo-title
               | {{ todo.title }}
             span.input-group-btn.del-btn
