@@ -2,11 +2,25 @@
   angular.module('App', []).controller('MainController', [
     '$scope', function($scope) {
       $scope.todos = [];
-      return $scope.addTodo = function() {
-        return $scope.todos.push({
-          title: Math.random(),
+      $scope.newTitle = '';
+      $scope.addTodo = function() {
+        $scope.todos.push({
+          title: $scope.newTitle,
           done: false
         });
+        return $scope.newTitle = '';
+      };
+      $scope.filter = {
+        done: {
+          done: true
+        },
+        remaining: {
+          done: false
+        }
+      };
+      $scope.currentFilter = null;
+      return $scope.changeFilter = function(filter) {
+        return $scope.currentFilter = filter;
       };
     }
   ]);

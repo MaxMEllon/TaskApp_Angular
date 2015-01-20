@@ -2,18 +2,25 @@ html
   head
     meta charset='utf-8'
     title TaskManeger
-    link rel='stylesheet' href='build/style/style.css'
-    link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'
-    /* script src='//code.jquery.com/jquery.js'                                                                */
-    /* script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js'                              */
-    /* script src='http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js' */
+    link (
+      rel='stylesheet'
+      href='build/style/style.css'
+    )
+    link (
+      rel='stylesheet'
+      href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'
+    )
     script src='build/script/angular.js'
     script src='build/script/app.js'
 
   body ng-app='App'
     .navbar.navbar-default#navigation
       .container
-        button.navbar-toggle type='button' data-toggle='collapse' data-target='.navbar-responsive-collapse'
+        button.navbar-toggle (
+          type='button'
+          data-toggle='collapse'
+          data-target='.navbar-responsive-collapse'
+        )
           span.icon-bar
           span.icon-bar
           span.icon-bar
@@ -24,12 +31,16 @@ html
           li
             a href='#'
               | home
-    .container#content
+    .container#content ng-controller="MainController"
       h1
         | TaskManeger
       br
-      form.input-group.input-group-lg
-        input.form-control.imput-lg type="text" placeholder="input by task"
+      form.input-group.input-group-lg ng-submit="addTodo()"
+        input.form-control.imput-lg (
+          type="text"
+          placeholder="input by task"
+          ng-model="newTitle"
+        )
         span.input-group-btn
           button.btn.btn-default type="submit"
             | Add
@@ -37,39 +48,55 @@ html
         .btn-group
           button.btn.btn-success
             | OK/NG
-          button.btn.btn-default.active
-            | TODO
-            span.badge 3
-          button.btn.btn-default.active
+          button.btn.btn-default (
+            ng-click="changeFilter()"
+            ng-class="{active: !currentFilter}"
+          )
+            | ALL
+            span.badge
+              | {{ todos.length }}
+          button.btn.btn-default (
+            ng-click="changeFilter(filter.remaining)"
+            ng-class="{active: currentFilter == filter.remaining}"
+          )
             | Complate
+            span.badge 1
+          button.btn.btn-default (
+            ng-click="changeFilter(filter.done)"
+            ng-class="{active: currentFilter == filter.done}"
+          )
+            | Not Complate
             span.badge 1
         .btn-group
           button.btn.btn-danger
-            | Romove by Completed tasks
+            | romove by completed all tasks
       hr
       ul.list-unstyled
-        li.todo-item
+        li.todo-item (
+          ng-repeat="todo in todos | filter:currentFilter"
+          ng-class="{done: todo.done}"
+        )
           form.input-group.input-group-lg.todo-title
             label.input-group-addon
               input type="checkbox"
             p.form-control.input-lg.todo-title
-              | Not Complet Task
+              | {{ todo.title }}
             span.input-group-btn.del-btn
               button.btn.btn-danger type="reset"
                 | Delete
-        li.todo-item.done
-          form.input-group.input-group-lg.todo-title
-            label.input-group-addon
-              input type="checkbox"
-            p.form-control.input-lg.todo-title
-              | Completed Task
-            span.input-group-btn.del-btn
-              button.btn.btn-danger type="reset"
-                | Delete
-        li.todo-item.editing
-          form.input-group.input-group-lg.todo-title
-            label.input-group-addon
-              input type="checkbox"
-            p.form-control.input-lg.todo-title
-              | Editing Task
+        /* li.todo-item.done                            */
+        /*   form.input-group.input-group-lg.todo-title */
+        /*     label.input-group-addon                  */
+        /*       input type="checkbox"                  */
+        /*     p.form-control.input-lg.todo-title       */
+        /*       | Completed Task                       */
+        /*     span.input-group-btn.del-btn             */
+        /*       button.btn.btn-danger type="reset"     */
+        /*         | Delete                             */
+        /* li.todo-item.editing                         */
+        /*   form.input-group.input-group-lg.todo-title */
+        /*     label.input-group-addon                  */
+        /*       input type="checkbox"                  */
+        /*     p.form-control.input-lg.todo-title       */
+        /*       | Editing Task                         */
 
