@@ -42,7 +42,7 @@ module.exports = (grunt) ->
     connect:
       server:
         options:
-          port: 3000
+          port: 8080
 
   # plugin
   grunt.loadNpmTasks "grunt-contrib-sass"

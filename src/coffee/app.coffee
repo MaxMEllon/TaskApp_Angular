@@ -1,5 +1,5 @@
 angular.module 'App', []
-  .controller 'MainController', [
+  .controller('MainController', [
     '$scope',
     '$filter'
     ($scope, $filter)->
@@ -29,5 +29,22 @@ angular.module 'App', []
         $scope.remainingCount = all_count - $scope.doneCount
       , true
 
-  ]
+      originalTitle = ''
+      $scope.editing = null
+
+      $scope.editTodo =(todo)->
+        originalTitle = todo.title
+        $scope.editing = todo
+
+      $scope.doneEdit =(todoForm)->
+        $scope.editingtitle = originalTitle if todoForm.$invaild
+        $scope.editing = originaleTitle = null
+  ])
+  .directive('mySelect',
+    [ ->
+        (scope, $el, attrs)->
+          scope.$watch(attrs.mySelect, (val)->
+            $el[0].select() if val
+          )
+    ])
 

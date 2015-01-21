@@ -76,14 +76,28 @@ html
       ul.list-unstyled
         li.todo-item (
           ng-repeat="todo in todos | filter:currentFilter"
-          ng-class="{done: todo.done}"
+          ng-class="{done: todo.done, editing: todo == editing}"
         )
-          form.input-group.input-group-lg.todo-title
+          form.input-group.input-group-lg.todo-title (
+              name="todoForm"
+              ng-submit="doneEdit(todoForm)"
+            )
             label.input-group-addon
               input type="checkbox" ng-model="todo.done"
-            p.form-control.input-lg.todo-title
+            p.form-control.input-lg.todo-title (
+                ng-hide="todo == editing"
+                ng-dblclick="editTodo(todo)"
+              )
               | {{ todo.title }}
-            span.input-group-btn.del-btn
+            input.form-control.input.lg (
+              type="text"
+              required
+              ng-model="todo.title"
+              ng-show="todo == editing"
+              my-select="todo == editing"
+              ng-blur="doneEdit(todoForm)"
+            )
+            span.input-group-btn.del-btn ng-if="todo != editing"
               button.btn.btn-danger type="reset"
                 | Delete
         /* li.todo-item.done                            */
