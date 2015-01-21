@@ -39,6 +39,22 @@ angular.module 'App', []
       $scope.doneEdit =(todoForm)->
         $scope.editingtitle = originalTitle if todoForm.$invaild
         $scope.editing = originaleTitle = null
+
+      $scope.checkAll = ->
+        state = !!$scope.remainingCount
+
+        angular.forEach($scope.todos, (todo) ->
+          todo.done = state
+        )
+
+      $scope.removeDoneTodo = ->
+        $scope.todos = where($scope.todos, $scope.filter.remaining)
+
+      $scope.removeTodo =(currentTodo)->
+        $scope.todos = where($scope.todos, (todo)->
+          currentTodo isnt todo
+        )
+
   ])
   .directive('mySelect',
     [ ->

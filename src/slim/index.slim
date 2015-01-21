@@ -37,6 +37,7 @@ html
       br
       form.input-group.input-group-lg ng-submit="addTodo()"
         input.form-control.imput-lg (
+          required
           type="text"
           placeholder="input by task"
           ng-model="newTitle"
@@ -46,7 +47,7 @@ html
             | Add
       .btn-toolbar
         .btn-group
-          button.btn.btn-success
+          button.btn.btn-success ng-click="checkAll()"
             | OK/NG
           button.btn.btn-default (
             ng-click="changeFilter()"
@@ -70,7 +71,7 @@ html
             span.badge
               | {{ remainingCount }}
         .btn-group
-          button.btn.btn-danger
+          button.btn.btn-danger ngclick="removeDoneTodo()"
             | remove by completed all tasks
       hr
       ul.list-unstyled
@@ -98,8 +99,12 @@ html
               ng-blur="doneEdit(todoForm)"
             )
             span.input-group-btn.del-btn ng-if="todo != editing"
-              button.btn.btn-danger type="reset"
+              button.btn.btn-danger (
+                type="reset"
+                ng-click="removeTodo(todo)"
+              )
                 | Delete
+
         /* li.todo-item.done                            */
         /*   form.input-group.input-group-lg.todo-title */
         /*     label.input-group-addon                  */

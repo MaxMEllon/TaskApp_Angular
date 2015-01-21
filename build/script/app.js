@@ -37,12 +37,27 @@
         originalTitle = todo.title;
         return $scope.editing = todo;
       };
-      return $scope.doneEdit = function(todoForm) {
+      $scope.doneEdit = function(todoForm) {
         var originaleTitle;
         if (todoForm.$invaild) {
           $scope.editingtitle = originalTitle;
         }
         return $scope.editing = originaleTitle = null;
+      };
+      $scope.checkAll = function() {
+        var state;
+        state = !!$scope.remainingCount;
+        return angular.forEach($scope.todos, function(todo) {
+          return todo.done = state;
+        });
+      };
+      $scope.removeDoneTodo = function() {
+        return $scope.todos = where($scope.todos, $scope.filter.remaining);
+      };
+      return $scope.removeTodo = function(currentTodo) {
+        return $scope.todos = where($scope.todos, function(todo) {
+          return currentTodo !== todo;
+        });
       };
     }
   ]).directive('mySelect', [
