@@ -60,14 +60,14 @@ html
             ng-click="changeFilter(filter.remaining)"
             ng-class="{active: currentFilter == filter.remaining}"
           )
-            | Complate
+            | Complete
             span.badge
               | {{ doneCount }}
           button.btn.btn-default (
             ng-click="changeFilter(filter.done)"
             ng-class="{active: currentFilter == filter.done}"
           )
-            | Not Complate
+            | Not Complete
             span.badge
               | {{ remainingCount }}
         .btn-group
